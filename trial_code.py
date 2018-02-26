@@ -1,4 +1,5 @@
 import nltk
+<<<<<<< HEAD
 from nltk.corpus import stopwords,state_union,wordnet
 from nltk.tokenize import word_tokenize
 from nltk.stem import PorterStemmer
@@ -20,12 +21,24 @@ def performPreprocessing(query):
 	#named_entity=NER(token_list)
 	token_list=Lemmatizing(token_list)
 	return token_list
+=======
+from nltk.corpus import stopwords,state_union
+from nltk.tokenize import word_tokenize
+from nltk.stem import PorterStemmer
+ps=PorterStemmer()
+>>>>>>> 1a9d1f2a1f6674b8b3d09ac10da549439726d486
 
 
 
 ###Step1-Tokenize###
 def Tokenize(query):
 	token_list=word_tokenize(query)
+<<<<<<< HEAD
+=======
+	token_list=Stopword_removal(token_list)
+	token_list=Stemming(token_list)
+	token_list=POS_Removal(token_list)
+>>>>>>> 1a9d1f2a1f6674b8b3d09ac10da549439726d486
 	return token_list
 
 
@@ -41,12 +54,18 @@ def Stemming(token_list):
 		token_list[i]=ps.stem(token_list[i])
 	return token_list
 
+<<<<<<< HEAD
 ###Step4-Parts Of Speech Tagging###
 def POS_Tagging(token_list):
+=======
+###Step4-Parts Of Speech Removal###
+def POS_Removal(token_list):
+>>>>>>> 1a9d1f2a1f6674b8b3d09ac10da549439726d486
 	token_list=nltk.pos_tag(token_list)
 	return token_list
 
 
+<<<<<<< HEAD
 ###Step5-Chunking&Chinking###
 def Chunking(token_list):
 	chunkGram=r"""Chunk: {<.*>+}
@@ -73,3 +92,11 @@ query=state_union.raw('2005-GWBush.txt')
 #print(result)
 
 print(syns)
+=======
+
+
+
+query=state_union.raw('2005-GWBush.txt')
+result=Tokenize(query)
+print(result)
+>>>>>>> 1a9d1f2a1f6674b8b3d09ac10da549439726d486
