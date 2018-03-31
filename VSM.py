@@ -30,15 +30,6 @@ for i in range(len(corpus)):
 	corpus[i]['Description']=word_tokenize(corpus[i]['Description'])
 
 
-###Stemming###
-ps=PorterStemmer()
-for i in range(len(corpus)):
-	for j in range(len(corpus[i]['Title'])):
-		corpus[i]['Title'][j]=ps.stem(corpus[i]['Title'][j])
-	for k in range(len(corpus[i]['Description'])):
-		corpus[i]['Description'][k]=ps.stem(corpus[i]['Description'][k])
-
-
 
 ###Lemmatization###
 lemmatizer=WordNetLemmatizer()
@@ -72,8 +63,6 @@ for i in range(len(corpus)):
 	corpus[i]['Description']=[token for token in corpus[i]['Description'] if len(token)>2]
 
 
-
-
 ###Stopword Removal###
 stop_words = set(stopwords.words('english'))
 for i in range(len(corpus)):
@@ -87,17 +76,13 @@ for i in range(len(corpus)):
 	vocabulary.update(corpus[i]['Title'])
 	vocabulary.update(corpus[i]['Description'])
 
-vocabulary_list = [word for word,frequency in vocabulary.items() if frequency >= 5 and len(word)>1]
+vocabulary_list = [word for word,frequency in vocabulary.items() if frequency >=4 and len(word)>1]
 file_path='vocabulary.txt'
 f = open(file_path, 'w')
 simplejson.dump(vocabulary_list, f)
 f.close()
 
-
-###Saving the Preprocessed Documents###
 documents=[]
-for i in range(len((corpus))):
-	documents.append(corpus[i]['Title'])
 for i in range(len(corpus)):
 	documents.append(corpus[i]['Description'])
 
@@ -107,6 +92,7 @@ simplejson.dump(documents, f)
 f.close()
 
 print("Preprocessing Successful!")
+
 
 
 
