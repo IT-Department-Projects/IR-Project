@@ -72,65 +72,6 @@ documents = ast.literal_eval(documents)
 f1.close()
 
 
-###Input Query###
-query=sys.argv[1]
-###Normalization###
-query=query.lower()
-###Tokenization###
-query=word_tokenize(query)
-
-
-###Lemmatization###
-lemmatizer=WordNetLemmatizer()
-for i in range(len(query)):
-	query[i]=lemmatizer.lemmatize(query[i])
-
-###Cleaning###
-###(i) & (ii)###
-translation = str.maketrans("","", string.punctuation);
-for i in range(len(query)):
-	query[i]=query[i].translate(translation)
-
-###(iii)###
-query=[token for token in query if token.isalpha()]
-
-###(iv)###
-query=[token for token in query if len(token)>1]
-
-###Stopword Removal###
-stop_words = set(stopwords.words('english'))
-query=[token for token in query if not token in stop_words]
-
-
-def term_frequency_query(documents,query,vocabulary_list):
-	TF=[]
-	for word in vocabulary_list:
-		fij=query.count(word)
-		if fij>0:
-			tf=1+math.log(fij,2)
-		else:
-			tf=0
-		TF.append(tf)
-
-	return TF
-
-def inverse_document_frequency_query(documents,query,vocabulary_list):
-	IDF=[]
-	N=len(documents)
-	print(N)
-	for word in vocabulary_list:
-		if word in query:
-			idf=math.log(N,2)
-		else:
-			idf=0
-		IDF.append(idf)
-	return IDF
-
-def term_frequency_inverse_document_frequency_query(TF,IDF):
-	TFIDF=np.multiply(TF,IDF)
-	TFIDF=TFIDF.tolist()
-	return TFIDF
-
 
 ###Performing TFIDF###
 TF=term_frequency(documents,vocabulary_list)
@@ -138,11 +79,10 @@ IDF=inverse_document_frequency(documents,vocabulary_list)
 TFIDF=term_frequency_inverse_document_frequency(TF,IDF)
 
 
-
-###Performing TFIDF for Query###
-TF_query=term_frequency_query(documents,query,vocabulary_list)
-TFIDF_query=term_frequency_inverse_document_frequency_query(TF_query,IDF)
-
+file_path='idf.txt'
+f = open(file_path, 'w')
+simplejson.dump(IDF, f)
+f.close()
 
 
 ###Generating CSV###
@@ -153,5 +93,5 @@ with open(file_path, 'w') as myfile:
 	
 	for tfidf in TFIDF:
 		wr.writerow(tfidf)
-	wr.writerow(TFIDF_query)
+	#wr.writerow(TFIDF_query)
 

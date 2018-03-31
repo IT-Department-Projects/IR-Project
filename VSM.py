@@ -75,8 +75,20 @@ vocabulary = Counter()
 for i in range(len(corpus)):
 	vocabulary.update(corpus[i]['Title'])
 	vocabulary.update(corpus[i]['Description'])
+	X_Label=[corpus[i]['X-Label']]
+	vocabulary.update(X_Label)
+	Y_Label=[corpus[i]['Y-Label']]
+	vocabulary.update(Y_Label)
+	X_min=[corpus[i]['X-min']]
+	vocabulary.update(X_min)
+	Y_min=[corpus[i]['Y-min']]
+	vocabulary.update(Y_min)
+	X_max=[corpus[i]['X-max']]
+	vocabulary.update(X_max)
+	Y_max=[corpus[i]['Y-max']]
+	vocabulary.update(Y_max)
 
-vocabulary_list = [word for word,frequency in vocabulary.items() if frequency >=4 and len(word)>1]
+vocabulary_list = [word for word,frequency in vocabulary.items() if frequency >=1 and len(word)>1]
 file_path='vocabulary.txt'
 f = open(file_path, 'w')
 simplejson.dump(vocabulary_list, f)
@@ -84,6 +96,12 @@ f.close()
 
 documents=[]
 for i in range(len(corpus)):
+	corpus[i]['Description'].append(corpus[i]['X-Label'])
+	corpus[i]['Description'].append(corpus[i]['Y-Label'])
+	corpus[i]['Description'].append(corpus[i]['X-min'])
+	corpus[i]['Description'].append(corpus[i]['Y-min'])
+	corpus[i]['Description'].append(corpus[i]['X-max'])
+	corpus[i]['Description'].append(corpus[i]['Y-max'])
 	documents.append(corpus[i]['Description'])
 
 file_path='documents.txt'

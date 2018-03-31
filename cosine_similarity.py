@@ -40,7 +40,6 @@ for i in range(len(documents)):
 if flag == 0:
 	print("Your search did not match any documents.")
 else:
-	print(COS_SIM)
 	print("top-10")
 	COS_SIM.sort(key=itemgetter(1), reverse=True)
 	print(COS_SIM[0:11])
