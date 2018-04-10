@@ -78,4 +78,3 @@ print(syns)
 query=state_union.raw('2005-GWBush.txt')
 result=Tokenize(query)
 print(result)
-

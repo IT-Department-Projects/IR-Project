@@ -6,7 +6,7 @@ from nltk.stem import WordNetLemmatizer
 from nltk.corpus import stopwords
 
 ###Accessing the Documents###
-file_path='key_fields.json'
+file_path='data/key_fields.json'
 f1 = open(file_path, 'r')
 documents=f1.read()
 documents = ast.literal_eval(documents)
@@ -79,6 +79,3 @@ for i in range(len(documents)):
 
 print("Inverted Index")
 print(Inverted_Index)
-
-
-

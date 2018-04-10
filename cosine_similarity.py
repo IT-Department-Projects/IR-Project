@@ -4,7 +4,7 @@ import math
 from operator import itemgetter
 
 documents=[]
-file_path='tfidf.csv'
+file_path='data/tfidf.csv'
 file=open(file_path, "r")
 reader = csv.reader(file)
 for line in reader:
@@ -43,6 +43,3 @@ else:
 	print("top-10")
 	COS_SIM.sort(key=itemgetter(1), reverse=True)
 	print(COS_SIM[0:11])
-
-
-

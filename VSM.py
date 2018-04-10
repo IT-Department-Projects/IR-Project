@@ -10,7 +10,7 @@ import csv
 
 
 ###Accessing the Corpus###
-file_path='key_fields.json'
+file_path='data/key_fields.json'
 f1 = open(file_path, 'r')
 corpus=f1.read()
 corpus = ast.literal_eval(corpus)
@@ -89,7 +89,7 @@ for i in range(len(corpus)):
 	vocabulary.update(Y_max)
 
 vocabulary_list = [word for word,frequency in vocabulary.items() if frequency >=1 and len(word)>1]
-file_path='vocabulary.txt'
+file_path='data/vocabulary.txt'
 f = open(file_path, 'w')
 simplejson.dump(vocabulary_list, f)
 f.close()
@@ -104,15 +104,9 @@ for i in range(len(corpus)):
 	corpus[i]['Description'].append(corpus[i]['Y-max'])
 	documents.append(corpus[i]['Description'])
 
-file_path='documents.txt'
+file_path='data/documents.txt'
 f = open(file_path, 'w')
 simplejson.dump(documents, f)
 f.close()
 
 print("Preprocessing Successful!")
-
-
-
-
-
-
