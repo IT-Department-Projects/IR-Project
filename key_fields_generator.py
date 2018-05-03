@@ -70,7 +70,8 @@ for file in listdir('/Users/aimanabdullahanees/Desktop/IR-Project/Latex/Populati
 		"X-max":x_max,
 		"Y-min":y_min,
 		"Y-max":y_max,
-		"Description":text
+		"Description":text,
+		"File_location": filename
 		}
 		doc_id+=1
 
