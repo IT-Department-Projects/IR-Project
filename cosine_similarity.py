@@ -60,12 +60,12 @@ else:
 			'score': COS_SIM[i][1],
 			'title': new_data[COS_SIM[i][0]]["Title"],
 			'description': new_data[COS_SIM[i][0]]["Description"],
-			'x-label': new_data[COS_SIM[i][0]]["X-Label"],
-			'y-label': new_data[COS_SIM[i][0]]["Y-Label"],
-			'x-min': new_data[COS_SIM[i][0]]["X-min"],
-			'x-max': new_data[COS_SIM[i][0]]["X-max"],
-			'y-min': new_data[COS_SIM[i][0]]["Y-min"],
-			'y-max': new_data[COS_SIM[i][0]]["Y-Max"],
+			'x_label': new_data[COS_SIM[i][0]]["X-Label"],
+			'y_label': new_data[COS_SIM[i][0]]["Y-Label"],
+			'x_min': new_data[COS_SIM[i][0]]["X-min"],
+			'x_max': new_data[COS_SIM[i][0]]["X-max"],
+			'y_min': new_data[COS_SIM[i][0]]["Y-min"],
+			'y_max': new_data[COS_SIM[i][0]]["Y-max"],
 			'file-location': new_data[COS_SIM[i][0]]["File_location"]
 		})
 	with open('static/js/data.json', 'w') as outfile:

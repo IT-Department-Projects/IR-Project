@@ -27,6 +27,7 @@ def team():
 def rank():
     # print(str(json.dumps(request.json)))
     query = request.form['query']
+    # query = request.json['query']
     # query = '"' + query + '"'
     print("Query recieved is: " + query)
     subprocess.run(["python", "tfidf_query.py", query])

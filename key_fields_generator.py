@@ -8,10 +8,10 @@ import math
 
 KEY_FIELDS=[]
 doc_id=1
-for file in listdir('/Users/aimanabdullahanees/Desktop/IR-Project/Latex/Population'):
-	file_path='/Users/aimanabdullahanees/Desktop/IR-Project/Latex/Population/'+file
+for file in listdir('Latex/Population'):
+	file_path='Latex/Population/'+file
 
-	if file_path != "/Users/aimanabdullahanees/Desktop/IR-Project/Latex/Population/.DS_Store":
+	if file_path != "Latex/Population/.DS_Store":
 
 		temp = open(file_path,'r').read().split('\n')
 
@@ -46,7 +46,7 @@ for file in listdir('/Users/aimanabdullahanees/Desktop/IR-Project/Latex/Populati
 		y_max=str(y_max)
 
 		file=file.split('.')
-		filename = '/Users/aimanabdullahanees/Desktop/IR-Project/PDFs/Population_PDFs/' +file[0]+'.pdf'
+		filename = '/static/PDFs/Population_PDFs/' +file[0]+'.pdf'
 		pdfFileObj = open(filename,'rb')
 		pdfReader = PyPDF2.PdfFileReader(pdfFileObj)
 		num_pages = pdfReader.numPages
@@ -70,8 +70,8 @@ for file in listdir('/Users/aimanabdullahanees/Desktop/IR-Project/Latex/Populati
 		"X-max":x_max,
 		"Y-min":y_min,
 		"Y-max":y_max,
+		"File_location": filename,
 		"Description":text,
-		"File_location": filename
 		}
 		doc_id+=1
 
