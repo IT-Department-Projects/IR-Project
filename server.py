@@ -25,19 +25,21 @@ def team():
 
 @app.route('/rank', methods=['POST'])
 def rank():
-    print(str(json.dumps(request.json)))
-    query = request.json['query']
-
+    # print(str(json.dumps(request.json)))
+    query = request.form['query']
+    # query = '"' + query + '"'
+    print("Query recieved is: " + query)
     subprocess.run(["python", "tfidf_query.py", query])
     process = subprocess.Popen(
         ["python", "cosine_similarity.py"], stdout=subprocess.PIPE)
-    stdout = process.communicate()[0]
-    print(stdout)
+    stdout = str(process.communicate()[0])
+    print("Output recieved is: "+stdout)
 
-    return stdout
+    # return json.dumps(stdout)
+    return render_template('about.html')
+    # return json.dumps({'query':query})
 
 @app.route('/')
-# @auth.login_required
 def index():
     return render_template('index.html', name='Image Find')
 

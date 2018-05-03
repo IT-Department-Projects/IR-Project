@@ -30,14 +30,14 @@ def term_frequency_inverse_document_frequency_query(TF,IDF):
 
 
 ###Accessing the Vocabulary###
-file_path='data/vocabulary.txt'
+file_path='vocabulary.txt'
 f1 = open(file_path, 'r')
 vocabulary_list=f1.read()
 vocabulary_list = ast.literal_eval(vocabulary_list)
 f1.close()
 
 ###Accessing IDF###
-file_path='data/idf.txt'
+file_path='idf.txt'
 f1 = open(file_path, 'r')
 IDF=f1.read()
 IDF = ast.literal_eval(IDF)
@@ -74,8 +74,8 @@ query=[token for token in query if not token in stop_words]
 TF=term_frequency_query(query,vocabulary_list)
 TFIDF=term_frequency_inverse_document_frequency_query(TF,IDF)
 
-###Generating CSV###
-file_path='data/tfidf.csv'
-with open(file_path, 'a') as myfile:
-	wr = csv.writer(myfile, quoting=csv.QUOTE_ALL)
-	wr.writerow(TFIDF)
+###Generating TFIDF of Query###
+file_path='tfidf.txt'
+f = open(file_path, 'w')
+simplejson.dump(TFIDF, f)
+f.close()
