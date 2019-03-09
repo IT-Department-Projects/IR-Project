@@ -99,6 +99,8 @@ def main(query):
 	simplejson.dump(TFIDF, f)
 	f.close()
 
+main(sys.argv[1])
+
 
 
 
